@@ -2,27 +2,48 @@ import React, { lazy, Suspense, useCallback, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { LoadingOutlined } from "@ant-design/icons";
-import { errorBoundary } from "./helpers/errorBoundary";
+import { auth } from "./firebase";
 import { useDispatch } from "react-redux";
 import { currentUser } from "./functions/auth";
-import { auth } from "./firebase";
+import { LoadingOutlined } from "@ant-design/icons";
+import { errorBoundary } from "./helpers/errorBoundary";
 
-// lazy loading
 const Login = lazy(() => import("./pages/auth/Login"));
 const Register = lazy(() => import("./pages/auth/Register"));
 const Home = lazy(() => import("./pages/Home"));
 const Header = lazy(() => import("./components/nav/Header"));
+const SideDrawer = lazy(() => import("./components/drawer/SideDrawer"));
 const RegisterComplete = lazy(() => import("./pages/auth/RegisterComplete"));
 const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
+const UserRoute = lazy(() => import("./components/routes/UserRoute"));
+const AdminRoute = lazy(() => import("./components/routes/AdminRoute"));
+const Password = lazy(() => import("./pages/user/Password"));
+const Wishlist = lazy(() => import("./pages/user/Wishlist"));
+const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
+
+const BrandCreate = lazy(() =>
+  import("./pages/admin/brand/BrandCreate")
+);
+
+const BrandUpdate = lazy(() =>
+  import("./pages/admin/brand/BrandUpdate")
+);
+
+const StoreCreate = lazy(() => import("./pages/admin/store/StoreCreate"));
+const StoreUpdate = lazy(() => import("./pages/admin/store/StoreUpdate"));
+const PhoneCreate = lazy(() => import("./pages/admin/phone/PhoneCreate"));
+const AllPhones = lazy(() => import("./pages/admin/phone/AllPhones"));
+const PhoneUpdate = lazy(() => import("./pages/admin/phone/PhoneUpdate"));
+const Phone = lazy(() => import("./pages/Phone"));
+const BrandHome = lazy(() => import("./pages/brand/BrandHome"));
+const StoreHome = lazy(() => import("./pages/store/StoreHome"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const App = () => {
-
   const dispatch = useDispatch();
 
   const thenEndpointAction = useCallback(
-    ({ data: { name, email, role, _id } }, { token }) => 
+    ({ data: { name, email, role, _id } }, { token }) =>
       dispatch({
         type: "LOGGED_IN_USER",
         payload: { name, email, token, role, _id },
@@ -45,10 +66,10 @@ const App = () => {
     const unsubscribe = auth.onAuthStateChanged(
       (user) => user && userExistAction(user)
     );
+
     return () => unsubscribe();
-    
   }, [dispatch, thenEndpointAction, userExistAction]);
-  
+
   return (
     <Suspense
       fallback={
@@ -58,22 +79,39 @@ const App = () => {
       }
     >
       <Header />
+      <SideDrawer />
       <ToastContainer />
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/"currentUser component={Home} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/register/complete" component={RegisterComplete} />
         <Route exact path="/forgot/password" component={ForgotPassword} />
+        <UserRoute exact path="/user/password" component={Password} />
+        <UserRoute exact path="/user/wishlist" component={Wishlist} />
+        <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
+        <AdminRoute exact path="/admin/brand" component={BrandCreate} />
+        <AdminRoute
+          exact
+          path="/admin/brand/:slug"
+          component={BrandUpdate}
+        />
+        <AdminRoute exact path="/admin/store" component={StoreCreate} />
+        <AdminRoute exact path="/admin/store/:slug" component={StoreUpdate} />
+        <AdminRoute exact path="/admin/phone" component={PhoneCreate} />
+        <AdminRoute exact path="/admin/phones" component={AllPhones} />
+        <AdminRoute
+          exact
+          path="/admin/phone/:slug"
+          component={PhoneUpdate}
+        />
+        <Route exact path="/phone/:slug" component={Phone} />
+        <Route exact path="/brand/:slug" component={BrandHome} />
+        <Route exact path="/store/:slug" component={StoreHome} />
         <Route component={NotFound} />
       </Switch>
     </Suspense>
   );
 };
 
-// pattern design react: HOC
 export default errorBoundary(App);
-
-
-
-

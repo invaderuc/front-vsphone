@@ -50,7 +50,7 @@ const PhoneCard = ({ phone }) => {
   };
 
   // destructure
-  const { images, title, description, slug, price } = phone;
+  const { images, name, description, slug, price } = phone;
   return (
     <>
       {phone && phone.ratings && phone.ratings.length > 0 ? (
@@ -81,7 +81,7 @@ const PhoneCard = ({ phone }) => {
         ]}
       >
         <Meta
-          title={`${title} - $${price}`}
+          title={`${name} - $${price}`}
           description={`${description && description.substring(0, 40)}...`}
         />
       </Card>

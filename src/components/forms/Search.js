@@ -5,9 +5,10 @@ import { SearchOutlined } from "@ant-design/icons";
 
 const Search = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { search } = useSelector((state) => ({ ...state }));
   const { text } = search;
+
+  const history = useHistory();
 
   const handleChange = (e) => {
     dispatch({
@@ -18,7 +19,7 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push(`/shop?${text}`);
+    history.push(`/phones?${text}`);
   };
 
   return (

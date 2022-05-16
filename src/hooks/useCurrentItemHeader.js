@@ -16,8 +16,6 @@ const useCurrentItemHeader = () => {
   const checkCurrentPage = useCallback(() => {
     const availablePages = {
       home: "home",
-      shop: "shop",
-      cart: "cart",
       register: "register",
       login: "login",
       user: "user-dash",

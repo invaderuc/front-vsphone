@@ -35,6 +35,7 @@ const PhoneCreate = lazy(() => import("./pages/admin/phone/PhoneCreate"));
 const AllPhones = lazy(() => import("./pages/admin/phone/AllPhones"));
 const PhoneUpdate = lazy(() => import("./pages/admin/phone/PhoneUpdate"));
 const Phone = lazy(() => import("./pages/Phone"));
+const Phones = lazy(() => import("./pages/Phones"));
 const BrandHome = lazy(() => import("./pages/brand/BrandHome"));
 const StoreHome = lazy(() => import("./pages/store/StoreHome"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -107,7 +108,8 @@ const App = () => {
         />
         <Route exact path="/phone/:slug" component={Phone} />
         <Route exact path="/brand/:slug" component={BrandHome} />
-        <Route exact path="/store/:slug" component={StoreHome} />
+        <Route exact path="/phones/:slug" component={StoreHome} />
+        <Route exact path="/phones" component={Phones} />
         <Route component={NotFound} />
       </Switch>
     </Suspense>

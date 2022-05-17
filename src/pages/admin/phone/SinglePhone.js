@@ -14,61 +14,15 @@ import { useHistory } from "react-router-dom";
 const { TabPane } = Tabs;
 
 // this is childrend component of Phone page
-const SinglePhone = ({ phone, onStarClick, star }) => {
+const SinglePhone = ({ phone }) => {
   const [tooltip, setTooltip] = useState("Click to add");
 
   // redux
   const { user } = useSelector((state) => ({ ...state }));
-  const dispatch = useDispatch();
-  // router
-  let history = useHistory();
 
   const { name, images, description, _id } = phone;
 
-  const handleAddToCart = () => {
-    // create cart array
-    let cart = [];
-    if (typeof window !== "undefined") {
-      // if cart is in local storage GET it
-      if (localStorage.getItem("cart")) {
-        cart = JSON.parse(localStorage.getItem("cart"));
-      }
-      // push new phone to cart
-      cart.push({
-        ...phone,
-        count: 1,
-      });
-      // remove duplicates
-      let unique = _.uniqWith(cart, _.isEqual);
-      // save to local storage
-      // console.log('unique', unique)
-      localStorage.setItem("cart", JSON.stringify(unique));
-      // show tooltip
-      setTooltip("Added");
-
-      // add to reeux state
-      dispatch({
-        type: "ADD_TO_CART",
-        payload: unique,
-      });
-      // show cart items in side drawer
-      dispatch({
-        type: "SET_VISIBLE",
-        payload: true,
-      });
-    }
-  };
-
-  const handleAddToWishlist = (e) => {
-    e.preventDefault();
-    addToWishlist(phone._id, user.token).then((res) => {
-      console.log("ADDED TO WISHLIST", res.data);
-      toast.success("Added to wishlist");
-      history.push("/user/wishlist");
-    });
-  };
-
-  return (
+    return (
     <>
       <div className="col-md-7">
         {images && images.length ? (
@@ -91,37 +45,7 @@ const SinglePhone = ({ phone, onStarClick, star }) => {
 
       <div className="col-md-5">
         <h1 className="bg-info p-3">{name}</h1>
-
-        {phone && phone.ratings && phone.ratings.length > 0 ? (
-          showAverage(phone)
-        ) : (
-          <div className="text-center pt-1 pb-3">No rating yet</div>
-        )}
-
-        <Card
-          actions={[
-            <Tooltip placement="top" title={tooltip}>
-              <a onClick={handleAddToCart} disabled={phone.quantity < 1}>
-                <ShoppingCartOutlined className="text-danger" />
-                <br />
-                {phone.quantity < 1 ? "Out of Stock" : "Add To Cart"}
-              </a>
-            </Tooltip>,
-            <a onClick={handleAddToWishlist}>
-              <HeartOutlined className="text-info" /> <br /> Add to Wishlist
-            </a>,
-            <RatingModal>
-              <StarRating
-                name={_id}
-                numberOfStars={5}
-                rating={star}
-                changeRating={onStarClick}
-                isSelectable={true}
-                starRatedColor="red"
-              />
-            </RatingModal>,
-          ]}
-        >
+        <Card>
           <PhoneListItems phone={phone} />
         </Card>
       </div>

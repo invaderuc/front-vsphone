@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 const PhoneListItems = ({ phone }) => {
   const {
     price,
+    battery,
+    ram,
     brand
   } = phone;
 
@@ -13,6 +15,20 @@ const PhoneListItems = ({ phone }) => {
         Price{" "}
         <span className="label label-default label-pill pull-xs-right">
           $ {price}
+        </span>
+      </li>
+
+      <li className="list-group-item">
+        RAM{" "}
+        <span className="label label-default label-pill pull-xs-right">
+           {ram}
+        </span>
+      </li>
+
+      <li className="list-group-item">
+        Battery{" "}
+        <span className="label label-default label-pill pull-xs-right">
+           {battery}
         </span>
       </li>
 
@@ -27,13 +43,6 @@ const PhoneListItems = ({ phone }) => {
           </Link>
         </li>
       )}
-
-      <li className="list-group-item">
-        Brand{" "}
-        <span className="label label-default label-pill pull-xs-right">
-          {brand}
-        </span>
-      </li>
     </ul>
   );
 };

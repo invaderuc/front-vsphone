@@ -41,17 +41,6 @@ export const getPhones = async (sort, order, page) =>
 export const getPhonesCount = async () =>
   await axios.get(`${process.env.REACT_APP_API}/phones/total`);
 
-export const phoneStar = async (phoneId, star, authtoken) =>
-  await axios.put(
-    `${process.env.REACT_APP_API}/phone/star/${phoneId}`,
-    { star },
-    {
-      headers: {
-        authtoken,
-      },
-    }
-  );
-
 export const getRelated = async (phoneId) =>
   await axios.get(`${process.env.REACT_APP_API}/phone/related/${phoneId}`);
 

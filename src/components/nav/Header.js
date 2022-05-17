@@ -40,7 +40,7 @@ const Header = () => {
       </Item>
 
       <Item key="shop" icon={<AppleOutlined />}>
-        <Link to="/phone">Phones</Link>
+        <Link to="/phones">Phones</Link>
       </Item>
 
       {!user && (

@@ -18,16 +18,19 @@ const BrandCreateForm = ({
     description,
     price,
     brand,
-    subs,
-    quantity,
-    colors,
-    stores,
+    battery,
+    storage,
+    ram,
+    weight,
+    high,
+    width,
+    length
   } = values;
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
-        <label>Title</label>
+        <label>Name</label>
         <input
           type="text"
           name="name"

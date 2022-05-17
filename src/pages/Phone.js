@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { getPhone, phoneStar } from "../functions/phone";
+import { getPhone } from "../functions/phone";
 import SinglePhone from "../components/cards/SinglePhone";
-import { useSelector } from "react-redux";
 import { getRelated } from "../functions/phone";
 import PhoneCard from "../components/cards/PhoneCard";
 
 const Phone = ({ match }) => {
   const [phone, setPhone] = useState({});
   const [related, setRelated] = useState([]);
-  const [star, setStar] = useState(0);
-  // redux
-  const { user } = useSelector((state) => ({ ...state }));
 
   const { slug } = match.params;
 
@@ -18,15 +14,6 @@ const Phone = ({ match }) => {
     loadSinglePhone();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
-
-  useEffect(() => {
-    if (phone.ratings && user) {
-      let existingRatingObject = phone.ratings.find(
-        (ele) => ele.postedBy.toString() === user._id.toString()
-      );
-      existingRatingObject && setStar(existingRatingObject.star); // current user's star
-    }
-  }, [phone.ratings, user]);
 
   const loadSinglePhone = () => {
     getPhone(slug).then((res) => {
@@ -36,22 +23,11 @@ const Phone = ({ match }) => {
     });
   };
 
-  const onStarClick = (newRating, name) => {
-    setStar(newRating);
-    console.table(newRating, name);
-    phoneStar(name, newRating, user.token).then((res) => {
-      console.log("rating clicked", res.data);
-      loadSinglePhone(); // if you want to show updated rating in real time
-    });
-  };
-
   return (
     <div className="container-fluid">
       <div className="row pt-4">
         <SinglePhone
           phone={phone}
-          onStarClick={onStarClick}
-          star={star}
         />
       </div>
 

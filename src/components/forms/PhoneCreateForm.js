@@ -1,30 +1,23 @@
 import React from "react";
-import { Select } from "antd";
-
-const { Option } = Select;
 
 const BrandCreateForm = ({
   handleSubmit,
   handleChange,
-  setValues,
-  values,
-  handleCatagoryChange,
-  subOptions,
-  showSub,
+  values
 }) => {
   // destructure
   const {
     name,
     description,
     price,
-    brand,
     battery,
     storage,
     ram,
     weight,
     high,
     width,
-    length
+    length,
+    brands
   } = values;
 
   return (
@@ -63,34 +56,94 @@ const BrandCreateForm = ({
       </div>
 
       <div className="form-group">
-        <label>Brand</label>
-        <select name="brand" className="form-control" onChange={handleChange}>
-          <option>Please select</option>
-          {brands.map((b) => (
-            <option key={b} value={b}>
-              {b}
-            </option>
-          ))}
-        </select>
+        <label>RAM</label>
+        <input
+          type="number"
+          name="ram"
+          className="form-control"
+          value={ram}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Storage</label>
+        <input
+          type="number"
+          name="storage"
+          className="form-control"
+          value={storage}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Battery</label>
+        <input
+          type="number"
+          name="battery"
+          className="form-control"
+          value={battery}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Weight</label>
+        <input
+          type="number"
+          name="weight"
+          className="form-control"
+          value={weight}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>High</label>
+        <input
+          type="number"
+          name="high"
+          className="form-control"
+          value={high}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Width</label>
+        <input
+          type="number"
+          name="width"
+          className="form-control"
+          value={width}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Length</label>
+        <input
+          type="number"
+          name="length"
+          className="form-control"
+          value={length}
+          onChange={handleChange}
+        />
       </div>
 
       <div className="form-group">
         <label>Brand</label>
-        <select
-          name="brand"
-          className="form-control"
-          onChange={handleBrandChange}
-        >
+        <select name="brand" className="form-control" onChange={handleChange}>
           <option>Please select</option>
-          {categories.length > 0 &&
-            brands.map((c) => (
-              <option key={c._id} value={c._id}>
-                {c.name}
-              </option>
-            ))}
+          {brands.map((b) => (
+            <option key={b._id} value={b._id}>
+              {b.name}
+            </option>
+          ))}
         </select>
       </div>
-
+      
       <br />
       <button className="btn btn-outline-info">Save</button>
     </form>

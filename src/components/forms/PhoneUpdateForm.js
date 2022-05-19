@@ -1,7 +1,4 @@
 import React from "react";
-import { Select } from "antd";
-
-const { Option } = Select;
 
 const PhoneUpdateForm = ({
   handleSubmit,
@@ -16,8 +13,14 @@ const PhoneUpdateForm = ({
     name,
     description,
     price,
-    brand,
-    brands,
+    battery,
+    storage,
+    ram,
+    weight,
+    high,
+    width,
+    length,
+    brand
   } = values;
 
   return (
@@ -51,6 +54,83 @@ const PhoneUpdateForm = ({
           name="price"
           className="form-control"
           value={price}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>RAM</label>
+        <input
+          type="number"
+          name="ram"
+          className="form-control"
+          value={ram}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Storage</label>
+        <input
+          type="number"
+          name="storage"
+          className="form-control"
+          value={storage}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Battery</label>
+        <input
+          type="number"
+          name="battery"
+          className="form-control"
+          value={battery}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Weight</label>
+        <input
+          type="number"
+          name="weight"
+          className="form-control"
+          value={weight}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>High</label>
+        <input
+          type="number"
+          name="high"
+          className="form-control"
+          value={high}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Width</label>
+        <input
+          type="number"
+          name="width"
+          className="form-control"
+          value={width}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Length</label>
+        <input
+          type="number"
+          name="length"
+          className="form-control"
+          value={length}
           onChange={handleChange}
         />
       </div>

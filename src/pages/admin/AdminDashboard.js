@@ -1,5 +1,6 @@
 import AdminNav from "../../components/nav/AdminNav";
 import useCurrentItemHeader from "../../hooks/useCurrentItemHeader";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const AdminDashboard = () => {
   useCurrentItemHeader();
@@ -11,7 +12,10 @@ const AdminDashboard = () => {
           <AdminNav />
         </div>
         <div className="col text-center">
-        
+          
+            <h1>Welcome!</h1>
+          
+           
         </div>
       </div>
     </div>

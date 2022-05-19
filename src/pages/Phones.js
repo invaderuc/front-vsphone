@@ -5,8 +5,7 @@ import { Menu, Slider, Checkbox, Radio } from "antd";
 import {
   DollarOutlined,
   DownSquareOutlined,
-  LoadingOutlined,
-  StarOutlined,
+  LoadingOutlined
 } from "@ant-design/icons";
 import { getBrands } from "../functions/brand";
 import {
@@ -126,7 +125,7 @@ const Phones = () => {
                   range
                   value={price}
                   onChange={handleSlider}
-                  max="4999"
+                  max="1600000"
                 />
               </div>
             </SubMenu>

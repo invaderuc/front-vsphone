@@ -8,7 +8,7 @@ const { Meta } = Card;
 
 const AdminPhoneCard = ({ phone, handleRemove }) => {
   // destructure
-  const { name, description, price, baterry, storage, ram, weight, high, witdh, length, images } = phone;
+  const { name, description, slug, images } = phone;
 
   return (
     <Card

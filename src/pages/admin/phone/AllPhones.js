@@ -6,6 +6,7 @@ import AdminNav from "../../../components/nav/AdminNav";
 import { getPhonesByCount } from "../../../functions/phone";
 import AdminPhoneCard from "../../../components/cards/AdminPhoneCard";
 import { removePhone } from "../../../functions/phone";
+import { Link } from "react-router-dom";
 
 const AllPhones = () => {
   const [phones, setPhones] = useState([]);
@@ -51,10 +52,23 @@ const AllPhones = () => {
         <div className="col-md-2">
           <AdminNav />
         </div>
+        
 
         <div className="col">
-          {!loaded && <LoadingOutlined />}
-          {loaded && <h4>All Phones</h4>}
+          
+        <div className="col-md-10 justify-content-md-end">
+          <div class="d-md-flex justify-content-md-end">
+            <Link to="/admin/phone/" className="btn btn-primary btn-lg">
+              New Phone
+            </Link>
+          </div>
+        </div>
+
+          <div className="col-md-2">
+            {!loaded && <LoadingOutlined />}
+            {loaded && <h4>All Phones</h4>}
+          </div>
+          
           <div className="row">
             {phones.map((phone) => (
               <div key={phone._id} className="col-md-4 pb-3">

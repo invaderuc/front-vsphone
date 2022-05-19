@@ -18,16 +18,16 @@ const ForgotPassword = lazy(() => import("./pages/auth/ForgotPassword"));
 const UserRoute = lazy(() => import("./components/routes/UserRoute"));
 const AdminRoute = lazy(() => import("./components/routes/AdminRoute"));
 const Password = lazy(() => import("./pages/user/Password"));
-const Wishlist = lazy(() => import("./pages/user/Wishlist"));
 const AdminDashboard = lazy(() => import("./pages/admin/AdminDashboard"));
 
-const BrandCreate = lazy(() =>
-  import("./pages/admin/brand/BrandCreate")
-);
-
-const BrandUpdate = lazy(() =>
-  import("./pages/admin/brand/BrandUpdate")
-);
+const BrandCreate = lazy(() => import("./pages/admin/brand/BrandCreate"));
+const BrandUpdate = lazy(() => import("./pages/admin/brand/BrandUpdate"));
+const IspCreate = lazy(() => import("./pages/admin/isp/IspCreate"));
+const IspUpdate = lazy(() => import("./pages/admin/isp/IspUpdate"));
+const FeatureCreate = lazy(() => import("./pages/admin/feature/FeatureCreate"));
+const FeatureUpdate = lazy(() => import("./pages/admin/feature/FeatureUpdate"));
+const MaterialCreate = lazy(() => import("./pages/admin/material/MaterialCreate"));
+const MaterialUpdate = lazy(() => import("./pages/admin/material/MaterialUpdate"));
 
 const StoreCreate = lazy(() => import("./pages/admin/store/StoreCreate"));
 const StoreUpdate = lazy(() => import("./pages/admin/store/StoreUpdate"));
@@ -89,23 +89,21 @@ const App = () => {
         <Route exact path="/register/complete" component={RegisterComplete} />
         <Route exact path="/forgot/password" component={ForgotPassword} />
         <UserRoute exact path="/user/password" component={Password} />
-        <UserRoute exact path="/user/wishlist" component={Wishlist} />
         <AdminRoute exact path="/admin/dashboard" component={AdminDashboard} />
         <AdminRoute exact path="/admin/brand" component={BrandCreate} />
-        <AdminRoute
-          exact
-          path="/admin/brand/:slug"
-          component={BrandUpdate}
-        />
+        <AdminRoute exact path="/admin/isp" component={IspCreate} />
+        <AdminRoute exact path="/admin/brand/:slug" component={BrandUpdate} />
+        <AdminRoute exact path="/admin/ips" component={IspCreate} />
+        <AdminRoute exact path="/admin/isp/:slug" component={IspUpdate} />
+        <AdminRoute exact path="/admin/feature" component={FeatureCreate} />
+        <AdminRoute exact path="/admin/feature/:slug" component={FeatureUpdate} />
+        <AdminRoute exact path="/admin/material" component={MaterialCreate} />
+        <AdminRoute exact path="/admin/material/:slug" component={MaterialUpdate} />
         <AdminRoute exact path="/admin/store" component={StoreCreate} />
         <AdminRoute exact path="/admin/store/:slug" component={StoreUpdate} />
         <AdminRoute exact path="/admin/phone" component={PhoneCreate} />
         <AdminRoute exact path="/admin/phones" component={AllPhones} />
-        <AdminRoute
-          exact
-          path="/admin/phone/:slug"
-          component={PhoneUpdate}
-        />
+        <AdminRoute exact path="/admin/phone/:slug" component={PhoneUpdate} />
         <Route exact path="/phone/:slug" component={Phone} />
         <Route exact path="/brand/:slug" component={BrandHome} />
         <Route exact path="/phones/:slug" component={StoreHome} />

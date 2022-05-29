@@ -28,7 +28,26 @@ const SinglePhone = ({ phone }) => {
             {description && description}
           </TabPane>
           <TabPane tab="More" key="2">
-            Call use on xxxx xxx xxx to learn more about this phone.
+          <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row">High</th>
+                  <td>{ phone.high} millimeters</td>
+                </tr>
+                <tr>
+                  <th scope="row">Width</th>
+                  <td>{ phone.width} millimeters</td>
+                </tr>
+                <tr>
+                  <th scope="row">Length</th>
+                  <td>{ phone.length} millimeters</td>
+                </tr>
+                <tr>
+                  <th scope="row">Weight</th>
+                  <td>{ phone.weight} grams</td>
+                </tr>
+              </tbody>
+          </table>
           </TabPane>
         </Tabs>
       </div>
